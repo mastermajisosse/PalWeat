@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TruthorDare test app</title>
+    <!-- <link rel="stylesheet" href="ccc.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <!-- 
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script> -->
+
+  <!-- <script defer src="./init-firebase.js"></script> -->
+
+  <script>
+    const copy = [];
+    const allcities = [
+      "32.9281387,35.0764694",
+      "32.9646,35.4960",
+      "32.7940,34.9896",
+      "32.6996,35.3035",
+      "32.4646,35.2939",
+      "32.4971,35.4973",
+      "32.3194,35.0240",
+      "32.3211,35.3700",
+      "32.1960,34.9815",
+      "32.2227,35.2621",
+      "32.0851,35.1808",
+      "32.0494,34.7584",
+      "31.8611,35.4618",
+      "31.9038,35.2034",
+      "31.7683,35.2137",
+      "31.3547,34.3088",
+      "31.7054,35.2024",
+      "31.3462,34.3040",
+      "31.2968,34.2435",
+      "31.5326,35.0998",
+      "31.2530,34.7915"
+    ];
+    allcities.forEach(function(allcitie) {
+      fetch(
+        "http://localhost:8010/proxy/forecast/6077a3ce319a0b8acd55d08f087660da/" +
+          allcitie +
+          "?exclude=minutely,currently,hourly,flags&units=ca&lang=ar"
+      )
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          // console.log(JSON.stringify(myJson));
+          document.getElementById("demo").innerHTML += //""data":"
+            JSON.stringify(myJson["daily"]["data"]).slice(1, -1) + ",<br><br>";
+
+          // copy.push(JSON.stringify(myJson));
+        });
+    });
+  </script>
+
+  <style>
+    * {
+      padding: 10px;
+      align-self: center;
+    }
+    #demo {
+      width: 1000px;
+    }
+    div {
+      background-color: #f7f7f7;
+      align-items: center;
+
+      /* height: 500px; */
+    }
+    .madiv {
+      width: 400px;
+      margin-left: 300px;
+    }
+    @media screen and (max-width: 992px) {
+      .madiv {
+        width: 80%;
+        margin-left: 1px;
+      }
+    }
+  </style>
+
+  <body>
+    <p id="demo">[</p>
+    ]
+    <!-- <div class="form-row">
+      <div style="width: 400px;" class="form-group ">
+        <h3>Add Truth</h3>
+        <label>Truth</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="كتبي هنا الصراحات"
+          id="MytruthField"
+        />
+        <br />
+        <button class="btn btn-primary" onclick="writeTruth()">
+          Add truth
+        </button>
+        <br />
+        <p >
+          <ul id="data"></ul>
+        </p>
+      </div>
+ 
+
+      <div class="form-group madiv">
+        <h3>Add Dare</h3>
+        <label>Dare</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="كتبي هنا التحديات"
+          id="MyDareField"
+        />
+        <br />
+        <button class="btn btn-success" onclick="writeDare()">Add Dare</button>
+        <br />
+
+        <p>
+          <ul id="data2">
+            
+          </ul>
+        </p>
+      </div>
+    </div> -->
+  </body>
+</html>
