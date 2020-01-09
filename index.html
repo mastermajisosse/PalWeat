@@ -64,7 +64,7 @@
     ];
     allcities.forEach(function(allcitie) {
       fetch(
-        "http://localhost:8010/proxy/forecast/6077a3ce319a0b8acd55d08f087660da/" +
+        "https://api.darksky.net/forecast/6077a3ce319a0b8acd55d08f087660da/" +
           allcitie +
           "?exclude=minutely,currently,hourly,flags&units=ca&lang=ar"
       )
