@@ -66,7 +66,8 @@
       fetch(
         "https://api.darksky.net/forecast/6077a3ce319a0b8acd55d08f087660da/" +
           allcitie +
-          "?exclude=minutely,currently,hourly,flags&units=ca&lang=ar"
+          "?exclude=minutely,currently,hourly,flags&units=ca&lang=ar",
+        {mode: 'cors'}
       )
         .then(function(response) {
           return response.json();
