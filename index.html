@@ -65,6 +65,7 @@
     allcities.forEach(function(allcitie) {
       var i = 0 ;
       var j = ",<br><br>";
+      console.log(i);
       i++;
       fetch(
         "https://api.darksky.net/forecast/6077a3ce319a0b8acd55d08f087660da/" +
@@ -77,11 +78,15 @@
         })
         .then(function(myJson) {
           // console.log(JSON.stringify(myJson));
+        
           if(i == 20){
-            j = "<br><br>";
-          }
+            document.getElementById("demo").innerHTML += //""data":"
+            JSON.stringify(myJson["daily"]["data"]).slice(1, -1) + "<br><br>";
+            
+          }else{
           document.getElementById("demo").innerHTML += //""data":"
             JSON.stringify(myJson["daily"]["data"]).slice(1, -1) + j;
+          }
 
           // copy.push(JSON.stringify(myJson));
         });
